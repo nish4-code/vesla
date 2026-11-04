@@ -1,0 +1,159 @@
+---
+// Technology Stack & Architecture - Light Theme with Rubik
+const stacks = [
+	{
+		category: "Frontend & Performance",
+		description: "Interfaces instantáneas, amigables con motores de búsqueda y diseñadas con precisión suiza.",
+		technologies: ["Astro v7", "TypeScript", "Tailwind CSS", "Web Components", "Vite", "Canvas / SVG"]
+	},
+	{
+		category: "Backend & Microservicios",
+		description: "APIs y servicios robustos capaces de procesar miles de transacciones concurrentes.",
+		technologies: ["Node.js / Express", "Python (FastAPI)", "Go", "PostgreSQL", "Redis Cache", "RabbitMQ"]
+	},
+	{
+		category: "Automatización & RPA",
+		description: "Robots de software para navegación web, procesamiento de archivos y orquestación.",
+		technologies: ["Playwright", "Selenium", "Celery", "OCR Vision", "Python RPA", "Modelos de IA"]
+	},
+	{
+		category: "Infraestructura & Cloud",
+		description: "Despliegues automatizados, alta disponibilidad y máxima seguridad para datos críticos.",
+		technologies: ["Docker", "AWS / GCP", "Cloudflare Workers", "CI/CD GitHub Actions", "SSL / OAuth 2.0"]
+	}
+];
+---
+
+<section id="stack" class="stack-section">
+	<div class="stack-container">
+		<div class="stack-header">
+			<span class="stack-badge">STACK TECNOLÓGICO</span>
+			<h2 class="stack-title">
+				Tecnologías modernas para construir <span class="highlight">sistemas duraderos</span>
+			</h2>
+			<p class="stack-subtitle">
+				Seleccionamos tecnologías probadas en producción por gigantes tecnológicos para garantizar máxima velocidad, seguridad y escalabilidad real.
+			</p>
+		</div>
+
+		<div class="stack-grid">
+			{stacks.map((item) => (
+				<div class="stack-card glass-card">
+					<h3 class="stack-category">{item.category}</h3>
+					<p class="stack-desc">{item.description}</p>
+					<div class="tech-pills">
+						{item.technologies.map((tech) => (
+							<span class="tech-pill">{tech}</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.stack-section {
+		padding: clamp(60px, 9vh, 100px) clamp(20px, 4vw, 56px);
+		background: #ffffff;
+		border-top: 1px solid #e2e8f0;
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	.stack-container {
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.stack-header {
+		text-align: center;
+		max-width: 780px;
+		margin: 0 auto clamp(40px, 6vh, 64px);
+	}
+
+	.stack-badge {
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		color: #0284c7;
+		margin-bottom: 14px;
+		display: inline-block;
+		background: #e0f2fe;
+		padding: 4px 12px;
+		border-radius: 9999px;
+	}
+
+	.stack-title {
+		font-size: clamp(32px, 4.6vw, 52px);
+		line-height: 1.15;
+		color: #0f172a;
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		margin-bottom: 16px;
+	}
+
+	.highlight {
+		color: #0284c7;
+	}
+
+	.stack-subtitle {
+		font-size: clamp(15.5px, 1.5vw, 17.5px);
+		line-height: 1.6;
+		color: #475569;
+	}
+
+	.stack-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 24px;
+	}
+
+	.stack-card {
+		padding: 34px 28px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 18px;
+		box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.03);
+		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+	}
+
+	.stack-card:hover {
+		transform: translateY(-4px);
+		border-color: rgba(2, 132, 199, 0.4);
+		box-shadow: 0 20px 35px -5px rgba(2, 132, 199, 0.10);
+	}
+
+	.stack-category {
+		font-size: 21px;
+		color: #0f172a;
+		font-weight: 700;
+		margin-bottom: 10px;
+		letter-spacing: -0.01em;
+	}
+
+	.stack-desc {
+		font-size: 14px;
+		line-height: 1.6;
+		color: #64748b;
+		margin-bottom: 24px;
+	}
+
+	.tech-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.tech-pill {
+		font-size: 12.5px;
+		padding: 6px 12px;
+		border-radius: 8px;
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		color: #334155;
+		font-weight: 500;
+	}
+</style>

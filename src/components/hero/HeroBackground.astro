@@ -1,0 +1,31 @@
+---
+import { heroBackground } from "../../data/hero";
+import { products } from "../../data/products";
+---
+
+<div
+	class="bg absolute inset-0 bg-cover bg-center bg-no-repeat [background-image:url('/assets/img/background.webp')] [backface-visibility:hidden] [transform-origin:50%_50%] will-change-transform"
+	role="img"
+	aria-label={heroBackground.alt}
+>
+	{
+		products.map((product, index) => (
+			<video
+				class:list={[
+					"absolute top-1/2 left-1/2 block h-[max(100vh,56.25vw)] w-[max(100vw,177.78vh)] opacity-0 transition-opacity duration-[900ms] ease-[ease] [transform:translate(-45.5%,-50%)_scale(1.1)] [&.on]:opacity-100",
+					index === 0 && "on",
+				]}
+				data-chapter={product.slug}
+				src={index === 0 ? `/assets/video/${product.scene}.mp4` : undefined}
+				data-src={index > 0 ? `/assets/video/${product.scene}.mp4` : undefined}
+				poster={index === 0 ? heroBackground.poster : undefined}
+				autoplay={index === 0}
+				muted
+				loop
+				playsinline
+				preload={index === 0 ? "auto" : "none"}
+				aria-hidden="true"
+			/>
+		))
+	}
+</div>

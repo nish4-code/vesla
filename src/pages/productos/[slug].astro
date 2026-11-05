@@ -1,0 +1,221 @@
+---
+import HeroLayout from "../../layouts/HeroLayout.astro";
+import Wordmark from "../../components/Wordmark.astro";
+import Footer from "../../components/Footer.astro";
+import { products } from "../../data/products";
+
+export function getStaticPaths() {
+	return products.map((product, index) => ({
+		params: { slug: product.slug },
+		props: { product, index },
+	}));
+}
+
+const { product, index } = Astro.props;
+const next = products[(index + 1) % products.length];
+const mailto = `mailto:hola@vesla.tech?subject=${encodeURIComponent(`Consulta: ${product.name}`)}`;
+const labelClass = "font-label-stratum font-bold uppercase no-underline";
+const focusClass =
+	"focus-visible:[outline:1px_solid_rgba(232,209,203,0.6)] focus-visible:[outline-offset:5px]";
+const navLinks = [
+	{ href: "/#nosotros", label: "ABOUT" },
+	{ href: "/#productos", label: "PRODUCTOS" },
+	{ href: "/#proceso", label: "PROCESO" },
+	{ href: "/#preguntas", label: "PREGUNTAS" },
+	{ href: "#contacto", label: "CONTACTO" },
+];
+---
+
+<HeroLayout
+	title={`${product.name} — Vesla`}
+	description={product.description}
+>
+	<main
+		class="product-page bg-[radial-gradient(circle_at_76%_0%,rgba(232,209,203,0.06),transparent_30%)] bg-[#04070d] text-cream"
+	>
+		<header
+			class="product-nav mx-auto flex w-[min(1240px,calc(100%-clamp(40px,8vw,128px)))] items-center justify-between gap-7 border-b border-[rgba(232,209,203,0.14)] py-[clamp(22px,3vw,34px)] max-[560px]:w-[calc(100%-40px)]"
+		>
+			<a
+				class:list={[
+					"logo",
+					focusClass,
+					"block text-cream",
+				]}
+				href="/"
+				aria-label="Vesla — inicio"
+			>
+				<Wordmark class="block h-auto w-[106px] fill-current" />
+			</a>
+			<nav
+				class="flex gap-[clamp(16px,2.6vw,34px)] max-[900px]:hidden"
+				aria-label="Principal"
+			>
+				{navLinks.map((link) => (
+					<a
+						class:list={[
+							labelClass,
+							focusClass,
+							"text-[clamp(8.5px,0.66vw,10px)] tracking-[0.14em] text-[rgba(232,209,203,0.58)] transition-colors duration-[250ms] ease-[ease] hover:text-white",
+						]}
+						href={link.href}
+					>
+						{link.label}
+					</a>
+				))}
+			</nav>
+			<a
+				class:list={[
+					labelClass,
+					focusClass,
+					"back whitespace-nowrap text-[clamp(8px,0.62vw,9.5px)] tracking-[0.14em] text-[rgba(232,209,203,0.44)] transition-colors duration-[250ms] ease-[ease] hover:text-white",
+				]}
+				href="/#productos"
+			>
+				VOLVER A PRODUCTOS ↗
+			</a>
+		</header>
+
+		<section
+			class="product-hero mx-auto w-[min(1240px,calc(100%-clamp(40px,8vw,128px)))] pt-[clamp(64px,9vw,136px)] pb-[clamp(56px,7vw,100px)] max-[560px]:w-[calc(100%-40px)]"
+		>
+			<div class="hero-meta mb-[clamp(30px,4vw,52px)] flex justify-between gap-6">
+				<p
+					class:list={[
+						labelClass,
+						"eyebrow m-0 text-[clamp(8.5px,0.66vw,10px)] tracking-[0.18em] text-[rgba(232,209,203,0.56)]",
+					]}
+				>
+					PRODUCTO / {String(index + 1).padStart(2, "0")}
+				</p>
+				<p
+					class:list={[
+						labelClass,
+						"rail m-0 text-[clamp(8.5px,0.66vw,10px)] tracking-[0.16em] text-[rgba(232,209,203,0.34)]",
+					]}
+				>
+					{product.rail}
+				</p>
+			</div>
+			<h1
+				class="m-0 text-[clamp(44px,9vw,142px)] font-normal uppercase leading-[0.86] tracking-[-0.05em]"
+			>
+				<span class="block">{product.headline[0]}</span>
+				<span class="block text-[rgba(232,209,203,0.38)]">{product.headline[1]}</span>
+			</h1>
+			<div
+				class="hero-body mt-[clamp(36px,5vw,64px)] flex items-end justify-between gap-8 border-t border-[rgba(232,209,203,0.14)] pt-[clamp(24px,3vw,34px)] max-[560px]:flex-col max-[560px]:items-start"
+			>
+				<p
+					class="m-0 max-w-[54ch] text-[clamp(14.5px,1.08vw,18px)] leading-[1.65] text-[rgba(232,209,203,0.62)]"
+				>
+					{product.description}
+				</p>
+				<a
+					class:list={[
+						"cta",
+						"group",
+						labelClass,
+						focusClass,
+						"inline-flex flex-none items-center gap-3 border-b border-[rgba(232,209,203,0.4)] pb-[9px] text-[clamp(9px,0.72vw,11px)] tracking-[0.16em] text-cream transition-[color,border-color] duration-[250ms] ease-[ease] hover:border-white hover:text-white",
+					]}
+					href={mailto}
+				>
+					<span>HABLEMOS</span>
+					<svg
+						class="h-[10px] w-[10px] flex-none stroke-current transition-[translate] duration-300 ease-[var(--e-soft)] group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+						viewBox="0 0 10 10"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+					>
+						<path d="M1 9 L9 1 M3 1 H9 V7" fill="none" stroke-width="1.2"></path>
+					</svg>
+				</a>
+			</div>
+		</section>
+
+		<section
+			class="detail-grid mx-auto grid w-[min(1240px,calc(100%-clamp(40px,8vw,128px)))] grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] gap-[clamp(40px,7vw,110px)] border-t border-[rgba(232,209,203,0.14)] pt-[clamp(48px,6vw,84px)] pb-[clamp(72px,9vw,128px)] max-[900px]:grid-cols-1 max-[560px]:w-[calc(100%-40px)]"
+			aria-labelledby="features-title"
+		>
+			<article>
+				<p
+					class:list={[
+						labelClass,
+						"eyebrow m-0 text-[clamp(8.5px,0.66vw,10px)] tracking-[0.18em] text-[rgba(232,209,203,0.56)]",
+					]}
+				>
+					QUÉ INCLUYE
+				</p>
+				<h2
+					class="mb-[clamp(30px,4vw,48px)] mt-5 max-w-[18ch] text-[clamp(28px,3.4vw,52px)] font-normal uppercase leading-none tracking-[-0.03em]"
+					id="features-title"
+				>
+					{product.tagline}
+				</h2>
+				<ul class="features m-0 list-none border-t border-[rgba(232,209,203,0.14)] p-0">
+					{product.features.map((feature, featureIndex) => (
+						<li class="grid grid-cols-[44px_1fr] items-baseline gap-3 border-b border-[rgba(232,209,203,0.14)] py-[clamp(16px,2vw,24px)] text-[clamp(14px,1.02vw,17px)] leading-[1.45] text-[rgba(232,209,203,0.7)]">
+							<span
+								class:list={[
+									labelClass,
+									"feature-num text-[clamp(8.5px,0.66vw,10px)] tracking-[0.12em] text-[rgba(232,209,203,0.3)]",
+								]}
+							>
+								{String(featureIndex + 1).padStart(2, "0")}
+							</span>
+							<span>{feature}</span>
+						</li>
+					))}
+				</ul>
+			</article>
+
+			<aside
+				class="self-start border border-[rgba(232,209,203,0.16)] bg-[rgba(232,209,203,0.025)] p-[clamp(24px,2.6vw,34px)] max-[560px]:p-[22px]"
+			>
+				<p
+					class:list={[
+						labelClass,
+						"eyebrow m-0 text-[clamp(8.5px,0.66vw,10px)] tracking-[0.18em] text-[rgba(232,209,203,0.56)]",
+					]}
+				>
+					SIGUIENTE PRODUCTO
+				</p>
+				<a
+					class:list={[
+						"next",
+						"group",
+						focusClass,
+						"mb-[clamp(28px,4vw,48px)] mt-[18px] flex items-center justify-between gap-[18px] text-[clamp(20px,1.85vw,28px)] font-normal uppercase leading-[1.05] tracking-[-0.02em] text-cream no-underline",
+					]}
+					href={next.href}
+				>
+					<span>{next.name}</span>
+					<svg
+						class="h-[10px] w-[10px] flex-none stroke-current transition-[translate] duration-300 ease-[var(--e-soft)] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-focus-visible:translate-x-[2px] group-focus-visible:-translate-y-[2px]"
+						viewBox="0 0 10 10"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+					>
+						<path d="M1 9 L9 1 M3 1 H9 V7" fill="none" stroke-width="1.2"></path>
+					</svg>
+				</a>
+				<p
+					class="aside-note mb-5 mt-0 text-[clamp(13px,0.95vw,15px)] leading-[1.6] text-[rgba(232,209,203,0.5)]"
+				>
+					¿No sabés por dónde empezar? Escribinos y te ayudamos a elegir.
+				</p>
+				<a
+					class:list={[
+						labelClass,
+						focusClass,
+						"aside-mail border-b border-[rgba(232,209,203,0.34)] pb-1 text-[clamp(8.5px,0.66vw,10px)] tracking-[0.14em] text-cream",
+					]}
+					href="mailto:hola@vesla.tech">hola@vesla.tech</a
+				>
+			</aside>
+		</section>
+	</main>
+
+	<Footer />
+</HeroLayout>

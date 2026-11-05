@@ -1,0 +1,1 @@
+export const INTRO_ANIMATION_DURATION_MS = 2200;

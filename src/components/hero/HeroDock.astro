@@ -1,0 +1,36 @@
+---
+const labelClass =
+	"font-label-stratum text-[calc(10*var(--t))] font-bold leading-none whitespace-nowrap";
+const textClass =
+	"t relative top-[var(--nudge)] inline-block whitespace-pre text-left";
+const focusClass =
+	"focus-visible:[outline:calc(1.5*var(--t))_solid_#e8d1cb] focus-visible:[outline-offset:calc(3*var(--t))]";
+---
+
+<div
+	class="dock absolute inset-x-0 bottom-0 h-[calc(47*var(--t))] [--nudge:calc(1.6*var(--t))]"
+>
+	<a
+		class:list={[
+			"scroll",
+			labelClass,
+			focusClass,
+			"absolute top-0 bottom-0 left-1/2 flex items-center text-[rgba(255,255,255,0.82)] no-underline transition-colors duration-300 ease-[ease] hover:text-white [transform:translateX(-50%)] [.anim_&]:animate-[settleC_0.52s_var(--e-soft)_1.02s_both]",
+		]}
+		href="#productos"
+	>
+		<svg
+			class="relative top-[calc(-1*var(--t))] h-[calc(7*var(--t))] w-[calc(5*var(--t))] flex-none fill-current"
+			viewBox="0 0 5 7"
+			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
+			><path d="M0 0 H5 L2.5 3 Z"></path><path d="M0 4 H5 L2.5 7 Z"></path></svg
+		>
+		<span
+			class:list={[
+				textClass,
+				"ml-[calc(10*var(--t))] tracking-[calc(-0.23*var(--t))]",
+			]}>VER PRODUCTOS</span
+		>
+	</a>
+</div>

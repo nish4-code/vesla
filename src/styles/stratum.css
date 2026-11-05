@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+	--font-body-stratum: "Inter S", -apple-system, "Helvetica Neue", Arial, sans-serif;
+	--font-label-stratum: "Chakra S", "Inter S", sans-serif;
+	--color-cream: #e8d1cb;
+	--color-ink: #15131b;
+}
+
+@font-face {
+	font-family: "Inter S";
+	src: url("/assets/fonts/inter-s-400.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
+@font-face {
+	font-family: "Inter S";
+	src: url("/assets/fonts/inter-s-700.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: block;
+}
+@font-face {
+	font-family: "Chakra S";
+	src: url("/assets/fonts/chakra-s-700.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: block;
+}
+
+:root {
+	--u: clamp(0.68px, min(100vw / 1280, 100vh / 800), 1.72px);
+	--u: clamp(0.68px, min(100vw / 1280, 100dvh / 800), 1.72px);
+	--t: var(--u);
+	--nudge: calc(1 * var(--t));
+	--e-mask: cubic-bezier(0.16, 1, 0.3, 1);
+	--e-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (max-width: 1152px) {
+	:root {
+		--u: clamp(0.8px, min(100vw / 1280, 100vh / 800), 1.1px);
+		--u: clamp(0.8px, min(100vw / 1280, 100dvh / 800), 1.1px);
+		--t: max(
+			var(--u),
+			clamp(0.9px, calc(0.9px + (1152px - 100vw) * 0.00042), 1.12px)
+		);
+	}
+}
+
+@media (max-width: 548px) {
+	:root {
+		--u: clamp(0.62px, min(100vw / 500, 100vh / 820), 1.1px);
+		--u: clamp(0.62px, min(100vw / 500, 100dvh / 820), 1.1px);
+		--t: clamp(1.06px, calc(100vw / 489), 1.12px);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes maskUp {
+	from {
+		transform: translateY(112%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes settle {
+	from {
+		opacity: 0;
+		transform: translateY(calc(7 * var(--t)));
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes markIn {
+	from {
+		transform: translateY(-50%) scaleX(0);
+	}
+	to {
+		transform: translateY(-50%) scaleX(1);
+	}
+}
+
+@keyframes settleC {
+	from {
+		opacity: 0;
+		transform: translate(-50%, calc(7 * var(--t)));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+		animation: none !important;
+	}
+}

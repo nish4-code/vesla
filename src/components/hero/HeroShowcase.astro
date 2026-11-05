@@ -1,0 +1,89 @@
+---
+import { products } from "../../data/products";
+
+const first = products[0];
+if (!first) throw new Error("Hero requires at least one product");
+
+const labelClass =
+	"font-label-stratum text-[calc(10*var(--t))] font-bold leading-none whitespace-nowrap";
+const textClass =
+	"t relative top-[var(--nudge)] inline-block whitespace-pre text-left";
+const focusClass =
+	"focus-visible:[outline:calc(1.5*var(--t))_solid_#e8d1cb] focus-visible:[outline-offset:calc(3*var(--t))]";
+---
+
+<div
+	class="hero absolute inset-x-0 bottom-[max(7.98%,calc(59*var(--t)))] flex flex-col items-center text-center [@media(max-width:1152px)_and_(min-aspect-ratio:6/5)]:px-[calc(150*var(--t))] [@media(max-width:1152px)_and_(max-aspect-ratio:6/5)]:px-[calc(22*var(--t))] max-[548px]:bottom-[max(9%,calc(59*var(--t)))] max-[548px]:px-[calc(18*var(--t))]"
+>
+	<h1
+		class="headline m-0 pl-[calc(1.53*var(--t))] text-[calc(31.5*var(--t))] font-bold uppercase leading-[calc(32*var(--t))] tracking-[calc(1.53*var(--t))] text-white max-[548px]:text-balance max-[548px]:transition-opacity max-[548px]:duration-[400ms] max-[548px]:[.swapping_&]:opacity-0 max-[548px]:[.anim_&]:animate-[settle_0.8s_var(--e-mask)_0.42s_both]"
+	>
+		<span class="hrow block overflow-hidden max-[548px]:inline max-[548px]:overflow-visible"
+			><span
+				class="hrise block transition-transform duration-500 ease-[var(--e-mask)] [.swapping_&]:[transform:translateY(112%)] [.anim_&]:animate-[maskUp_0.9s_var(--e-mask)_0.42s_both] max-[548px]:inline max-[548px]:[.anim_&]:animate-none"
+				>{first.headline[0]}</span
+			></span
+		><span class="hrow block overflow-hidden max-[548px]:inline max-[548px]:overflow-visible"
+			><span
+				class="hrise block transition-transform duration-500 ease-[var(--e-mask)] [.swapping_&]:[transform:translateY(112%)] [.anim_&]:animate-[maskUp_0.9s_var(--e-mask)_0.52s_both] max-[548px]:inline max-[548px]:[.anim_&]:animate-none"
+				>{first.headline[1]}</span
+			></span
+		>
+	</h1>
+	<p
+		class="blurb mt-[calc(15.56*var(--t))] max-w-[calc(420*var(--t))] text-[calc(11.1*var(--t))] font-normal leading-[calc(19.7*var(--t))] text-[rgba(224,232,245,0.72)] transition-[opacity,transform] duration-[400ms] ease-[ease] [.swapping_&]:[transform:translateY(calc(7*var(--t)))] [.swapping_&]:opacity-0 [.anim_&]:animate-[settle_0.72s_var(--e-soft)_0.7s_both] max-[548px]:max-w-[calc(400*var(--t))] max-[548px]:[&_br]:hidden [@media(max-height:560px)]:hidden [@media(max-width:370px)_and_(max-height:640px)]:hidden"
+	>
+		{
+			first.blurb.map((line, index) => (
+				<>
+					{line}
+					{index < first.blurb.length - 1 ? " " : ""}
+					{index < first.blurb.length - 1 && <br />}
+				</>
+			))
+		}
+	</p>
+	<a
+		class:list={[
+			"cta",
+			"group",
+			labelClass,
+			focusClass,
+			"relative mt-[calc(23*var(--t))] flex h-[calc(41*var(--t))] w-[calc(190*var(--t))] items-center justify-center no-underline max-[1152px]:w-auto max-[1152px]:px-[calc(19*var(--t))] [.anim_&]:animate-[settle_0.62s_var(--e-soft)_0.86s_both]",
+		]}
+		href={first.href}
+	>
+		<span
+			class="cta-glass absolute inset-0 bg-[rgba(255,255,255,0.035)] backdrop-blur-[calc(12*var(--t))] transition-colors duration-300 ease-[ease] group-hover:bg-[rgba(255,255,255,0.075)] [clip-path:polygon(calc(3*var(--t))_0,calc(100%-10*var(--t))_0,100%_calc(10*var(--t)),100%_calc(100%-3*var(--t)),calc(100%-3*var(--t))_100%,calc(10*var(--t))_100%,0_calc(100%-10*var(--t)),0_calc(3*var(--t)))]"
+		></span>
+		<svg
+			class="cta-edge absolute inset-0 h-full w-full overflow-visible"
+			viewBox="0 0 190 41"
+			preserveAspectRatio="none"
+			aria-hidden="true"
+			><path
+				class="fill-none stroke-[rgba(255,255,255,0.085)] transition-[stroke] duration-300 ease-[ease] group-hover:stroke-[rgba(255,255,255,0.2)] [stroke-width:1]"
+				d="M3.5.5 H179.5 L189.5 10.5 V37.5 L186.5 40.5 H10.5 L.5 30.5 V3.5 Z"
+				vector-effect="non-scaling-stroke"></path></svg
+		>
+		<span class="cta-in relative flex items-center">
+			<svg
+				class="h-[calc(11*var(--t))] w-[calc(7*var(--t))] flex-none fill-[#f2f6ff]"
+				viewBox="0 0 7 11"
+				xmlns="http://www.w3.org/2000/svg"
+				aria-hidden="true"
+				><rect x="0" y="0" width="4" height="5"></rect><rect
+					x="3"
+					y="4"
+					width="4"
+					height="4"></rect><rect x="0" y="7" width="4" height="4"></rect></svg
+			>
+			<span
+				class:list={[
+					textClass,
+					"ml-[calc(6*var(--t))] tracking-[calc(0.55*var(--t))] text-[#e9eef7]",
+				]}>{first.cta}</span
+			>
+		</span>
+	</a>
+</div>

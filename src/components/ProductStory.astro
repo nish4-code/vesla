@@ -1,0 +1,215 @@
+---
+import { products } from "../data/products";
+import { heroBackground } from "../data/hero";
+
+const labelClass = "font-label-stratum font-bold uppercase no-underline";
+const focusClass =
+	"focus-visible:[outline:1px_solid_rgba(232,209,203,0.6)] focus-visible:[outline-offset:5px]";
+const containerClass =
+	"mx-auto w-[min(1240px,calc(100%-clamp(40px,8vw,128px)))] max-[680px]:w-[calc(100%-40px)]";
+const eyebrowClass =
+	"eyebrow m-0 text-[clamp(9px,0.72vw,11px)] tracking-[0.2em] text-[rgba(232,209,203,0.58)]";
+const arrowClass =
+	"h-[10px] w-[10px] flex-none stroke-current transition-[translate] duration-300 ease-[var(--e-soft)] group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-focus-visible:translate-x-[2px] group-focus-visible:-translate-y-[2px]";
+const pad = (value: number) => String(value).padStart(2, "0");
+---
+
+<section
+	class="product-story relative scroll-mt-[clamp(88px,8vw,112px)] border-t border-[rgba(232,209,203,0.14)] bg-[#04070d] text-cream"
+	id="productos"
+	aria-labelledby="productos-title"
+>
+	<div class={containerClass}>
+		<header
+			class="grid grid-cols-[minmax(160px,0.52fr)_minmax(0,1fr)_minmax(0,0.72fr)] items-end gap-[clamp(20px,3vw,52px)] border-b border-[rgba(232,209,203,0.14)] py-[clamp(62px,8vw,124px)] max-[1020px]:grid-cols-1 max-[1020px]:gap-[18px]"
+		>
+			<p class:list={[labelClass, eyebrowClass]}>PRODUCTOS / 01—06</p>
+			<h2
+				class="m-0 max-w-[13ch] text-[clamp(34px,4.8vw,72px)] font-normal uppercase leading-[0.94] tracking-[-0.04em]"
+				id="productos-title"
+			>
+				Elegí por dónde <span class="text-white">empezar</span>.
+			</h2>
+			<div>
+				<p
+					class="m-0 max-w-[38ch] text-[clamp(13px,0.96vw,15.5px)] leading-[1.65] text-[rgba(232,209,203,0.56)] max-[1020px]:max-w-[52ch]"
+				>
+					Seis productos, una misma lógica: menos fricción, más control. Recorré el
+					catálogo y abrí el que necesites.
+				</p>
+				<p
+					class:list={[
+						labelClass,
+						"mt-6 flex items-center gap-3 text-[clamp(8px,0.62vw,9.5px)] tracking-[0.18em] text-[rgba(232,209,203,0.38)]",
+					]}
+				>
+					<span class="h-px w-7 bg-[rgba(232,209,203,0.3)]"></span>
+					SCROLL PARA RECORRER
+				</p>
+			</div>
+		</header>
+	</div>
+
+	<div class="relative border-t border-[rgba(232,209,203,0.14)]" data-product-story>
+		<div class="sticky top-0 h-[100svh] overflow-hidden" data-story-stage>
+			<div class="absolute inset-0">
+				{
+					products.map((product, index) => (
+						<video
+							class:list={[
+								"story-video absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
+								index === 0 ? "opacity-100" : "opacity-0",
+							]}
+							data-story-video={index}
+							data-src={`/assets/video/${product.scene}.mp4`}
+							muted
+							loop
+							playsinline
+							preload="none"
+							poster={heroBackground.poster}
+							aria-hidden="true"
+						></video>
+					))
+				}
+				<div
+					class="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,7,13,0.94)_0%,rgba(4,7,13,0.72)_42%,rgba(4,7,13,0.24)_100%)] max-[1020px]:bg-[linear-gradient(180deg,rgba(4,7,13,0.88)_0%,rgba(4,7,13,0.58)_54%,rgba(4,7,13,0.94)_100%)]"
+					aria-hidden="true"
+				></div>
+				<div
+					class="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,7,13,0.7)_0%,transparent_32%,transparent_62%,rgba(4,7,13,0.92)_100%)]"
+					aria-hidden="true"
+				></div>
+			</div>
+
+			<div
+				class="relative flex h-full flex-col px-[clamp(20px,6vw,96px)] pb-[clamp(18px,2.4vw,32px)] pt-[clamp(78px,8vw,108px)]"
+			>
+				<div class="flex items-center justify-between gap-6">
+					<p class:list={[labelClass, eyebrowClass]}>CATÁLOGO / 06 PRODUCTOS</p>
+					<p
+						class:list={[
+							labelClass,
+							"m-0 text-[clamp(9px,0.7vw,10.5px)] tracking-[0.16em] text-[rgba(232,209,203,0.5)]",
+						]}
+					>
+						<span class="text-cream" data-story-counter>01</span>
+						<span class="mx-1 text-[rgba(232,209,203,0.3)]">/</span>
+						<span>06</span>
+					</p>
+				</div>
+
+				<div class="relative min-h-0 flex-1">
+					<span
+						class="pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 select-none font-label-stratum text-[clamp(180px,28vw,430px)] font-bold leading-none tracking-[-0.08em] text-[rgba(232,209,203,0.035)] lg:block"
+						data-story-number
+						aria-hidden="true">01</span
+					>
+
+					{
+						products.map((product, index) => (
+							<article
+								class:list={[
+									"story-panel absolute inset-0 flex flex-col justify-end pb-[clamp(20px,3vh,36px)] md:justify-center md:pb-0",
+									index === 0 ? "visible" : "invisible",
+								]}
+								data-story-panel={index}
+								aria-hidden={index !== 0}
+								inert={index !== 0}
+							>
+								<div class="grid grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)] items-end gap-[clamp(28px,5vw,88px)] max-[1020px]:grid-cols-1 max-[1020px]:gap-6">
+									<div>
+										<p class:list={[labelClass, eyebrowClass]}>
+											{pad(index + 1)} / {product.rail}
+										</p>
+										<h3 class="mb-0 mt-4 text-[clamp(38px,6.6vw,104px)] font-normal uppercase leading-[0.88] tracking-[-0.05em]">
+											<span class="block">{product.headline[0]}</span>
+											<span class="block text-[rgba(232,209,203,0.38)]">
+												{product.headline[1]}
+											</span>
+										</h3>
+									</div>
+
+									<div class="border-l border-[rgba(232,209,203,0.22)] pl-[clamp(20px,2.6vw,36px)] max-[1020px]:border-l-0 max-[1020px]:border-t max-[1020px]:pl-0 max-[1020px]:pt-5">
+										<p class="m-0 text-[clamp(16px,1.35vw,22px)] leading-[1.3] text-cream">
+											{product.tagline}
+										</p>
+										<p class="mb-0 mt-4 max-w-[38ch] text-[clamp(13px,0.94vw,15px)] leading-[1.65] text-[rgba(232,209,203,0.56)] max-[1020px]:hidden">
+											{product.description}
+										</p>
+										<ul class="mb-0 mt-6 hidden list-none flex-col gap-2 p-0 lg:flex">
+											{product.features.slice(0, 3).map((feature) => (
+												<li class="relative pl-[14px] text-[clamp(11px,0.8vw,12.5px)] leading-[1.45] text-[rgba(232,209,203,0.44)] before:absolute before:left-0 before:font-label-stratum before:text-[rgba(232,209,203,0.26)] before:content-['/']">
+													{feature}
+												</li>
+											))}
+										</ul>
+										<a
+											class:list={[
+												labelClass,
+												focusClass,
+												"group mt-7 inline-flex items-center gap-3 border-b border-[rgba(232,209,203,0.36)] pb-[9px] text-[clamp(8.5px,0.66vw,10px)] tracking-[0.16em] text-cream transition-[color,border-color] duration-300 ease-[var(--e-soft)] hover:border-white hover:text-white",
+											]}
+											href={product.href}
+										>
+											<span>{product.cta}</span>
+											<svg
+												class={arrowClass}
+												viewBox="0 0 10 10"
+												xmlns="http://www.w3.org/2000/svg"
+												aria-hidden="true"
+											>
+												<path d="M1 9 L9 1 M3 1 H9 V7" fill="none" stroke-width="1.2" />
+											</svg>
+										</a>
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+
+				<div class="pt-[clamp(16px,2vw,24px)]">
+					<div class="h-px w-full overflow-hidden bg-[rgba(232,209,203,0.16)]">
+						<span
+							class="block h-full w-[16.6667%] bg-[rgba(232,209,203,0.76)]"
+							data-story-progress></span>
+					</div>
+					<nav
+						class="mt-[clamp(12px,1.4vw,18px)] grid grid-cols-6 gap-1"
+						aria-label="Productos"
+					>
+						{products.map((product, index) => (
+							<button
+								class:list={[
+									labelClass,
+									focusClass,
+									"group flex min-h-[38px] min-w-0 flex-col gap-2 border-t border-transparent pt-2 text-left text-[clamp(8.5px,0.62vw,9.5px)] tracking-[0.14em] text-[rgba(232,209,203,0.32)] transition-colors duration-300 hover:text-white data-[active=true]:text-cream",
+								]}
+								type="button"
+								data-story-go={index}
+								data-active={index === 0 ? "true" : "false"}
+								aria-label={`Ver ${product.name}`}
+							>
+								<span class="font-label-stratum">{pad(index + 1)}</span>
+								<span class="hidden truncate max-w-full font-body-stratum font-normal normal-case tracking-normal lg:block">
+									{product.rail}
+								</span>
+							</button>
+						))}
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="-mt-[100svh]" aria-hidden="true">
+			{
+				products.map((product) => (
+					<div id={product.slug} data-story-step class="h-[100svh]"></div>
+				))
+			}
+			<div class="h-[100svh]"></div>
+		</div>
+	</div>
+</section>
+
+<script src="../scripts/product-story/index.ts"></script>

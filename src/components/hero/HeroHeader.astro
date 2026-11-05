@@ -1,0 +1,156 @@
+---
+import { heroNavLinks } from "../../data/hero";
+import Wordmark from "../Wordmark.astro";
+
+const labelClass =
+	"font-label-stratum text-[calc(10*var(--t))] font-bold leading-none whitespace-nowrap";
+const textClass =
+	"t relative top-[var(--nudge)] inline-block whitespace-pre text-left";
+const focusClass =
+	"focus-visible:[outline:calc(1.5*var(--t))_solid_#e8d1cb] focus-visible:[outline-offset:calc(3*var(--t))]";
+const pillClass =
+	"relative flex h-[calc(41*var(--t))] cursor-pointer items-center border-0 p-0 no-underline";
+---
+
+<a
+	class:list={[
+		"logo",
+		focusClass,
+		"fixed top-[calc(30*var(--u)+22*var(--t))] left-[calc(30*var(--u)+24*var(--t))] z-[60] block h-[calc(19*var(--t))] w-[calc(106*var(--t))] overflow-hidden text-white max-[548px]:top-[calc(22*var(--u)+22*var(--t))] max-[548px]:left-[calc(22*var(--u)+16*var(--t))] max-[548px]:aspect-[106/19] max-[548px]:h-auto max-[548px]:w-[min(calc(106*var(--t)),42vw)]",
+	]}
+	href="#"
+	aria-label="Vesla — inicio"
+>
+	<Wordmark
+		class="block h-full w-full fill-white [.anim_&]:animate-[maskUp_0.8s_var(--e-mask)_0.16s_both]"
+	/>
+</a>
+
+<nav
+	class="masthead fixed top-[calc(30*var(--u)+12*var(--t))] right-[calc(30*var(--u)+11*var(--t))] z-[60] flex h-[calc(41*var(--t))] items-center max-[548px]:top-[calc(22*var(--u)+12*var(--t))] max-[548px]:right-[calc(22*var(--u)+9*var(--t))]"
+	aria-label="Principal"
+>
+	<div
+		class="navset contents max-[830px]:absolute max-[830px]:top-[calc(52*var(--t))] max-[830px]:right-0 max-[830px]:z-[6] max-[830px]:flex max-[830px]:min-w-[calc(196*var(--t))] max-[830px]:flex-col max-[830px]:items-stretch max-[830px]:gap-[calc(4*var(--t))] max-[830px]:bg-[rgba(11,16,26,0.74)] max-[830px]:p-[calc(16*var(--t))_calc(20*var(--t))_calc(18*var(--t))] max-[830px]:opacity-0 max-[830px]:invisible max-[830px]:translate-y-[calc(-6*var(--t))] max-[830px]:backdrop-blur-[calc(16*var(--t))] max-[830px]:transition-[opacity,translate,visibility] max-[830px]:duration-[340ms] max-[830px]:ease-[cubic-bezier(0.22,0.61,0.36,1)] max-[830px]:[clip-path:polygon(0_0,calc(100%-15*var(--t))_0,100%_calc(15*var(--t)),100%_100%,calc(15*var(--t))_100%,0_calc(100%-15*var(--t)))] max-[830px]:[.nav-open_&]:visible max-[830px]:[.nav-open_&]:translate-y-0 max-[830px]:[.nav-open_&]:opacity-100"
+		id="navset"
+	>
+		<div
+			class:list={[
+				"links",
+				labelClass,
+				"mr-[calc(18*var(--t))] flex items-center gap-[calc(14.4*var(--t))] max-[1152px]:gap-[calc(17*var(--t))] max-[1152px]:self-stretch max-[830px]:mr-0 max-[830px]:flex-col max-[830px]:items-stretch max-[830px]:gap-0 max-[830px]:self-auto [.anim_&]:animate-[fadeIn_0.4s_linear_0.34s_both]",
+			]}
+		>
+			{
+				heroNavLinks.map((link) => (
+					<a
+						class:list={[
+							focusClass,
+							"flex items-center pl-[calc(0.1*var(--t))] tracking-[calc(0.1*var(--t))] text-[#e3e8f2] no-underline opacity-[0.94] transition-[opacity,color] duration-[250ms] ease-[ease] hover:text-white hover:opacity-100 max-[1152px]:self-stretch max-[830px]:justify-start max-[830px]:py-[calc(9*var(--t))]",
+						]}
+						href={link.href}
+					>
+						<span class={textClass}>{link.label}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<a
+			class:list={[
+				"pill",
+				"enter",
+				pillClass,
+				labelClass,
+				focusClass,
+				"w-[calc(87*var(--t))] pl-[calc(21*var(--t))] backdrop-blur-[calc(12*var(--t))] bg-[rgba(255,250,246,0.05)] transition-colors duration-300 ease-[ease] hover:bg-[rgba(255,250,246,0.075)] max-[1152px]:w-auto max-[1152px]:pr-[calc(19*var(--t))] max-[1152px]:pl-[calc(21*var(--t))] max-[830px]:mt-[calc(10*var(--t))] max-[830px]:h-[calc(38*var(--t))] max-[830px]:self-stretch max-[830px]:justify-start max-[830px]:bg-[rgba(255,250,246,0.07)] max-[830px]:px-[calc(16*var(--t))] [.anim_&]:animate-[settle_0.56s_var(--e-soft)_0.3s_both]",
+			]}
+			href="#productos"
+		>
+			<svg
+				class="h-[calc(11*var(--t))] w-[calc(7*var(--t))] flex-none fill-[#f4f7ff]"
+				viewBox="0 0 7 11"
+				xmlns="http://www.w3.org/2000/svg"
+				aria-hidden="true"
+				><rect x="0" y="0" width="4" height="5"></rect><rect
+					x="3"
+					y="4"
+					width="4"
+					height="4"></rect><rect x="0" y="7" width="4" height="4"></rect></svg
+			>
+			<span
+				class:list={[
+					textClass,
+					"ml-[calc(7*var(--t))] tracking-[calc(0.33*var(--t))] text-[rgba(255,255,255,0.93)]",
+				]}>INGRESAR</span
+			>
+		</a>
+		<a
+			class:list={[
+				"pill",
+				"talk-cta",
+				pillClass,
+				labelClass,
+				focusClass,
+				"ml-[calc(12*var(--t))] w-auto bg-cream pr-[calc(17*var(--t))] pl-[calc(19*var(--t))] text-ink transition-colors duration-300 ease-[ease] hover:bg-[#f3e1dc] [clip-path:polygon(0_0,calc(100%-15*var(--t))_0,100%_calc(15*var(--t)),100%_100%,0_100%)] max-[830px]:mx-0 max-[830px]:mt-[calc(8*var(--t))] max-[830px]:h-[calc(38*var(--t))] max-[830px]:w-auto max-[830px]:justify-between max-[830px]:self-stretch max-[830px]:px-[calc(16*var(--t))] [.anim_&]:animate-[settle_0.56s_var(--e-soft)_0.36s_both]",
+			]}
+			href="#contacto"
+		>
+			<span class:list={[textClass, "text-ink tracking-[calc(0.12*var(--t))]"]}
+				>HABLEMOS</span
+			>
+			<svg
+				class="ml-[calc(8*var(--t))] h-[calc(12*var(--t))] w-[calc(13*var(--t))] fill-none stroke-current [stroke-width:1.6]"
+				viewBox="0 0 16 15"
+				xmlns="http://www.w3.org/2000/svg"
+				aria-hidden="true"
+			>
+				<path
+					d="M8 .8 C12 .8 15.2 3.8 15.2 7.4 C15.2 11 12 14 8 14 C6.6 14 5.3 13.6 4.2 13 L.9 13.9 L1.9 10.9 C1.2 9.9 .8 8.7 .8 7.4 C.8 3.8 4 .8 8 .8 Z"
+				></path>
+				<g fill="currentColor" stroke="none"
+					><circle cx="5.2" cy="7.4" r=".95"></circle><circle
+						cx="8"
+						cy="7.4"
+						r=".95"></circle><circle cx="10.8" cy="7.4" r=".95"></circle></g
+				>
+			</svg>
+		</a>
+	</div>
+	<button
+		class:list={[
+			"pill",
+			"menu",
+			labelClass,
+			focusClass,
+			"relative hidden h-[calc(41*var(--t))] cursor-pointer items-center border-0 p-0 pl-[calc(21*var(--t))] text-ink no-underline bg-cream transition-colors duration-300 ease-[ease] hover:bg-cream [clip-path:polygon(0_0,calc(100%-15*var(--t))_0,100%_calc(15*var(--t)),100%_100%,0_100%)] max-[1152px]:w-auto max-[1152px]:pr-[calc(24*var(--t))] max-[1152px]:pl-[calc(21*var(--t))] max-[830px]:flex [.anim_&]:animate-[settle_0.56s_var(--e-soft)_0.36s_both]",
+		]}
+		type="button"
+		aria-expanded="false"
+		aria-controls="navset"
+	>
+		<svg
+			class="h-[calc(10*var(--t))] w-[calc(10*var(--t))] fill-ink"
+			viewBox="0 0 10 10"
+			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
+			><rect x="0" y="0" width="4" height="4" rx=".8"></rect><rect
+				x="6"
+				y="0"
+				width="4"
+				height="4"
+				rx=".8"></rect><rect x="0" y="6" width="4" height="4" rx=".8"></rect><rect
+				x="6"
+				y="6"
+				width="4"
+				height="4"
+				rx=".8"></rect></svg
+		>
+		<span
+			class:list={[
+				textClass,
+				"ml-[calc(7*var(--t))] tracking-[calc(0.02*var(--t))] text-ink",
+			]}>MENÚ</span
+		>
+	</button>
+</nav>
